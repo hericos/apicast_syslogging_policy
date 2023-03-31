@@ -9,13 +9,13 @@ local new = _M.new
 function _M.new(config)
   local self = new(config)
 
-  host = os.getenv('SYSLOG_HOST')
-  port = os.getenv('SYSLOG_PORT')
-  proto = os.getenv('SYSLOG_PROTOCOL') or 'tcp'
-  base64_flag = os.getenv('APICAST_PAYLOAD_BASE64') or 'false'
-  flush_limit = os.getenv('SYSLOG_FLUSH_LIMIT') or '0'
-  periodic_flush = os.getenv('SYSLOG_PERIODIC_FLUSH') or '5'
-  drop_limit = os.getenv('SYSLOG_DROP_LIMIT') or '1048576'  
+  host = config.SYSLOG_HOST
+  port = config.SYSLOG_PORT
+  proto = config.SYSLOG_PROTOCOL or "tcp"
+  base64_flag = config.APICAST_PAYLOAD_BASE64 or "false"
+  flush_limit = config.SYSLOG_FLUSH_LIMIT or "0"
+  periodic_flush = config.SYSLOG_PERIODIC_FLUSH or "0"
+  drop_limit = config.SYSLOG_DROP_LIMIT or "1048576"
 
   if (host == nil or host == "") then
     ngx.log(ngx.ERR, "The environment SYSLOG_HOST is NOT defined !")
