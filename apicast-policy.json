@@ -1,16 +1,51 @@
 {
-    "$schema": "http://apicast.io/policy-v1.1/schema#manifest#",
-    "name": "SysLogging",
-    "summary": "Apicast policy that logs API calls for non-repudiation purposes",
-    "description":
-      [
-        "This Apicast policy intercepts API calls and sends them to a syslog server",
-        "The request, response, headers and additional information are serialized ",
-        "as JSON and sent to a syslog server."
-    ],
-    "version": "0.0.1",
-    "configuration": {
-      "type": "object",
-      "properties": { }
+  "$schema": "http://apicast.io/policy-v1.1/schema#manifest#",
+  "name": "SysLogging",
+  "summary": "Apicast policy that logs API calls for non-repudiation purposes",
+  "description":
+    [
+      "This Apicast policy intercepts API calls and sends them to a syslog server",
+      "The request, response, headers and additional information are serialized ",
+      "as JSON and sent to a syslog server."
+  ],
+  "version": "0.0.1",
+  "configuration": {
+    "type": "object",
+    "properties": { 
+      "SYSLOG_HOST": {
+        "type": "string",
+        "description": "Address of syslog server"
+      },
+      "SYSLOG_PORT": {
+        "description": "Port of syslog server",
+        "type": "integer"
+      },
+      "SYSLOG_PROTOCOL": {
+        "type": "string",
+        "enum": ["tcp", "udp"],
+        "default": "tcp"
+      },
+      "APICAST_PAYLOAD_BASE64": {
+        "type": "string",
+        "enum": ["false", "true"],
+        "default": "false",
+        "description": "Encode the payload in base64"
+      },
+      "SYSLOG_FLUSH_LIMIT": {
+        "description": "",
+        "type": "string",
+        "default": "0"
+      },
+      "SYSLOG_PERIODIC_FLUSH": {
+        "description": "",
+        "type": "string",
+        "default": "0"
+      },
+      "SYSLOG_DROP_LIMIT": {
+        "description": "",
+        "type": "string",
+        "default": "1048576"
+      }
     }
   }
+}
